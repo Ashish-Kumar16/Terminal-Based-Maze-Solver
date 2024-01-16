@@ -76,6 +76,10 @@ def print_maze(maze):
         print(horizontal_line)
 
 
+def mark_path(maze, path):
+    for position in path:
+        maze[position[0]][position[1]] = '◍'
+
 def main():
     size = int(input("Enter the size of the maze (n x n): "))
     wall_percentage = int(input("Enter the wall percentage: "))
@@ -93,7 +97,8 @@ def main():
             if path:
                 mark_path(maze, path)
                 print("\n Maze with path:")
-                # print_maze(maze)
+                print_maze(maze)
+                break
             else:
                 print("\nNo path exists.")
         elif choice == '2':
