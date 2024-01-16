@@ -39,6 +39,7 @@ def print_colored(char):
 def print_maze(maze):
     for row in maze:
         print(" ".join(map(print_colored, row)))
+
 def find_path(maze, start, end):
     visited = set()
 
@@ -62,11 +63,21 @@ def find_path(maze, start, end):
 
     path = dfs(start)
     return path
-def mark_path(maze, path):
-    for position in path:
-        maze[position[0]][position[1]] = '◍'
+
+def print_maze(maze):
+    horizontal_line = "+---" * len(maze[0]) + "+"
+
+    print(horizontal_line)
+
+    for row in maze:
+        for cell in row:
+            print(f"| {print_colored(cell)} ", end="")
+        print("|")
+        print(horizontal_line)
+
+
 def main():
-    size = int(input("Enter the size of the maze: "))
+    size = int(input("Enter the size of the maze (n x n): "))
     wall_percentage = int(input("Enter the wall percentage: "))
 
     maze, start, end = generate_maze(size, wall_percentage)
@@ -75,14 +86,14 @@ def main():
         print("\nGenerated Maze:")
         print_maze(maze)
 
-        choice = input("\nOptions: 1. Print Path 2. Generate Another Puzzle 3. Exit\nEnter your choice: ")
+        choice = input("\nGenerated Maze: \n1. Print Path \n2. Generate Another Puzzle \n3. Exit\nEnter your choice (1/2/3): ")
 
         if choice == '1':
             path = find_path(maze, start, end)
             if path:
                 mark_path(maze, path)
-                print("\nPath:")
-                print_maze(maze)
+                print("\n Maze with path:")
+                # print_maze(maze)
             else:
                 print("\nNo path exists.")
         elif choice == '2':
