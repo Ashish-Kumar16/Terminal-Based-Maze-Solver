@@ -1,5 +1,5 @@
 import random
-
+#maze_generation
 def generate_maze(size, wall_percentage):
     maze = [['◌' for _ in range(size)] for _ in range(size)]
 
